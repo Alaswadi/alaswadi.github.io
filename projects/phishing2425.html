@@ -1,0 +1,648 @@
+<html lang="ar" dir="rtl"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة معلومات هجمات التصيد الاحتيالي</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f0f4f8;
+            direction: rtl;
+        }
+        .chart-container {
+            position: relative;
+            height: 300px;
+            transition: all 0.3s ease;
+        }
+        .chart-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .stat-card {
+            transition: all 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .tab {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .tab.active {
+            border-bottom: 3px solid #3b82f6;
+            color: #1e40af;
+            font-weight: 600;
+        }
+        .tab:hover:not(.active) {
+            background-color: #e0e7ff;
+        }
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.16 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.absolute{position:absolute}.relative{position:relative}.right-0{right:0px}.right-1\/4{right:25%}.right-2\/4{right:50%}.right-3\/4{right:75%}.top-0{top:0px}.mx-auto{margin-left:auto;margin-right:auto}.mb-2{margin-bottom:0.5rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.mt-1{margin-top:0.25rem}.mt-2{margin-top:0.5rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-16{height:4rem}.h-96{height:24rem}.h-full{height:100%}.w-1\/4{width:25%}.w-full{width:100%}.cursor-pointer{cursor:pointer}.list-inside{list-style-position:inside}.list-disc{list-style-type:disc}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-center{justify-content:center}.gap-6{gap:1.5rem}.overflow-x-auto{overflow-x:auto}.rounded-lg{border-radius:0.5rem}.rounded-l-lg{border-top-left-radius:0.5rem;border-bottom-left-radius:0.5rem}.rounded-r-lg{border-top-right-radius:0.5rem;border-bottom-right-radius:0.5rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-r-4{border-right-width:4px}.border-blue-500{--tw-border-opacity:1;border-color:rgb(59 130 246 / var(--tw-border-opacity, 1))}.border-gray-200{--tw-border-opacity:1;border-color:rgb(229 231 235 / var(--tw-border-opacity, 1))}.border-green-500{--tw-border-opacity:1;border-color:rgb(34 197 94 / var(--tw-border-opacity, 1))}.border-indigo-500{--tw-border-opacity:1;border-color:rgb(99 102 241 / var(--tw-border-opacity, 1))}.border-purple-500{--tw-border-opacity:1;border-color:rgb(168 85 247 / var(--tw-border-opacity, 1))}.border-red-500{--tw-border-opacity:1;border-color:rgb(239 68 68 / var(--tw-border-opacity, 1))}.border-yellow-500{--tw-border-opacity:1;border-color:rgb(234 179 8 / var(--tw-border-opacity, 1))}.bg-blue-500{--tw-bg-opacity:1;background-color:rgb(59 130 246 / var(--tw-bg-opacity, 1))}.bg-gray-100{--tw-bg-opacity:1;background-color:rgb(243 244 246 / var(--tw-bg-opacity, 1))}.bg-gray-50{--tw-bg-opacity:1;background-color:rgb(249 250 251 / var(--tw-bg-opacity, 1))}.bg-indigo-500{--tw-bg-opacity:1;background-color:rgb(99 102 241 / var(--tw-bg-opacity, 1))}.bg-purple-500{--tw-bg-opacity:1;background-color:rgb(168 85 247 / var(--tw-bg-opacity, 1))}.bg-violet-500{--tw-bg-opacity:1;background-color:rgb(139 92 246 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-gradient-to-l{background-image:linear-gradient(to left, var(--tw-gradient-stops))}.from-blue-600{--tw-gradient-from:#2563eb var(--tw-gradient-from-position);--tw-gradient-to:rgb(37 99 235 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.to-indigo-800{--tw-gradient-to:#3730a3 var(--tw-gradient-to-position)}.p-4{padding:1rem}.p-6{padding:1.5rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-8{padding-top:2rem;padding-bottom:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.text-blue-100{--tw-text-opacity:1;color:rgb(219 234 254 / var(--tw-text-opacity, 1))}.text-blue-600{--tw-text-opacity:1;color:rgb(37 99 235 / var(--tw-text-opacity, 1))}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-800{--tw-text-opacity:1;color:rgb(31 41 55 / var(--tw-text-opacity, 1))}.text-green-600{--tw-text-opacity:1;color:rgb(22 163 74 / var(--tw-text-opacity, 1))}.text-indigo-600{--tw-text-opacity:1;color:rgb(79 70 229 / var(--tw-text-opacity, 1))}.text-purple-600{--tw-text-opacity:1;color:rgb(147 51 234 / var(--tw-text-opacity, 1))}.text-red-600{--tw-text-opacity:1;color:rgb(220 38 38 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-yellow-600{--tw-text-opacity:1;color:rgb(202 138 4 / var(--tw-text-opacity, 1))}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.hover\:bg-blue-600:hover{--tw-bg-opacity:1;background-color:rgb(37 99 235 / var(--tw-bg-opacity, 1))}.hover\:bg-indigo-600:hover{--tw-bg-opacity:1;background-color:rgb(79 70 229 / var(--tw-bg-opacity, 1))}.hover\:bg-purple-600:hover{--tw-bg-opacity:1;background-color:rgb(147 51 234 / var(--tw-bg-opacity, 1))}.hover\:bg-violet-600:hover{--tw-bg-opacity:1;background-color:rgb(124 58 237 / var(--tw-bg-opacity, 1))}@media (min-width: 768px){.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}@media (min-width: 1024px){.lg\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}}</style></head>
+<body>
+    <div class="container mx-auto px-4 py-8">
+        <div class="bg-gradient-to-l from-blue-600 to-indigo-800 rounded-lg shadow-lg p-6 mb-8">
+            <h1 class="text-3xl font-bold text-white mb-2">لوحة معلومات هجمات التصيد الاحتيالي</h1>
+            <p class="text-blue-100">تصور تفاعلي لاتجاهات وإحصائيات التصيد الاحتيالي لعامي 2024-2025</p>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="flex flex-wrap mb-6 border-b border-gray-200">
+            <div class="tab px-6 py-3 text-lg active" onclick="showTab('overview')">نظرة عامة</div>
+            <div class="tab px-6 py-3 text-lg" onclick="showTab('trends')">اتجاهات الهجمات</div>
+            <div class="tab px-6 py-3 text-lg" onclick="showTab('comparison')">مقارنة الأساليب</div>
+        </div>
+
+        <!-- Tab Content -->
+        <div id="tabContent">
+            <!-- Overview Tab -->
+            <div id="overview" class="tab-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                    <div class="stat-card bg-white rounded-lg shadow-md p-6 border-r-4 border-blue-500">
+                        <h3 class="text-lg font-semibold text-gray-700">التصيد عبر البريد الإلكتروني</h3>
+                        <p class="text-3xl font-bold text-blue-600 mt-2">+202%</p>
+                        <p class="text-gray-600 mt-1">زيادة حجم الهجمات في النصف الثاني من 2024</p>
+                    </div>
+                    <div class="stat-card bg-white rounded-lg shadow-md p-6 border-r-4 border-purple-500">
+                        <h3 class="text-lg font-semibold text-gray-700">التصيد متعدد القنوات</h3>
+                        <p class="text-3xl font-bold text-purple-600 mt-2">41%</p>
+                        <p class="text-gray-600 mt-1">من الحوادث الناجحة في 2025</p>
+                    </div>
+                    <div class="stat-card bg-white rounded-lg shadow-md p-6 border-r-4 border-red-500">
+                        <h3 class="text-lg font-semibold text-gray-700">الهندسة الاجتماعية</h3>
+                        <p class="text-3xl font-bold text-red-600 mt-2">+141%</p>
+                        <p class="text-gray-600 mt-1">زيادة في النصف الثاني من 2024</p>
+                    </div>
+                    <div class="stat-card bg-white rounded-lg shadow-md p-6 border-r-4 border-green-500">
+                        <h3 class="text-lg font-semibold text-gray-700">التصيد عبر الهاتف المحمول</h3>
+                        <p class="text-3xl font-bold text-green-600 mt-2">600</p>
+                        <p class="text-gray-600 mt-1">تهديدات الهاتف المحمول سنويًا لكل مستخدم</p>
+                    </div>
+                    <div class="stat-card bg-white rounded-lg shadow-md p-6 border-r-4 border-yellow-500">
+                        <h3 class="text-lg font-semibold text-gray-700">هجمات مدعومة بالذكاء الاصطناعي</h3>
+                        <p class="text-3xl font-bold text-yellow-600 mt-2">+4,000%</p>
+                        <p class="text-gray-600 mt-1">زيادة منذ عام 2022</p>
+                    </div>
+                    <div class="stat-card bg-white rounded-lg shadow-md p-6 border-r-4 border-indigo-500">
+                        <h3 class="text-lg font-semibold text-gray-700">الحسابات المخترقة</h3>
+                        <p class="text-3xl font-bold text-indigo-600 mt-2">57.9%</p>
+                        <p class="text-gray-600 mt-1">زيادة في الهجمات (سبتمبر 2024-فبراير 2025)</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4">مقارنة الإحصائيات الرئيسية</h2>
+                    <div class="chart-container">
+                        <canvas id="keyStatsChart" style="display: block; box-sizing: border-box; height: 300px; width: 688px;" width="860" height="375"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trends Tab -->
+            <div id="trends" class="tab-content hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h2 class="text-xl font-bold text-gray-800 mb-4">معدلات نمو الهجمات</h2>
+                        <div class="chart-container">
+                            <canvas id="growthChart" style="display: block; box-sizing: border-box; height: 300px; width: 688px;" width="860" height="375"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h2 class="text-xl font-bold text-gray-800 mb-4">معدلات نجاح أساليب الهجوم</h2>
+                        <div class="chart-container">
+                            <canvas id="successRateChart" style="display: block; box-sizing: border-box; height: 300px; width: 688px;" width="860" height="375"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4">نقاط دخول التصيد عبر الهاتف المحمول</h2>
+                    <div class="chart-container">
+                        <canvas id="mobileEntryChart" style="display: block; box-sizing: border-box; height: 300px; width: 688px;" width="860" height="375"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison Tab -->
+            <div id="comparison" class="tab-content hidden">
+                <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4">مقارنة أساليب الهجوم</h2>
+                    <div class="chart-container h-96">
+                        <canvas id="radarChart" style="display: block; box-sizing: border-box; height: 384px; width: 688px;" width="860" height="480"></canvas>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h2 class="text-xl font-bold text-gray-800 mb-4">أنواع محتوى التصيد الإلكتروني</h2>
+                        <div class="chart-container">
+                            <canvas id="emailPayloadChart" style="display: block; box-sizing: border-box; height: 300px; width: 688px;" width="860" height="375"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h2 class="text-xl font-bold text-gray-800 mb-4">مصادر هجمات احتيال الأعمال</h2>
+                        <div class="chart-container">
+                            <canvas id="becSourcesChart" style="display: block; box-sizing: border-box; height: 300px; width: 688px;" width="860" height="375"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6 mt-8">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">الجدول الزمني لأساليب هجمات التصيد</h2>
+            <div class="relative overflow-x-auto">
+                <div class="w-full h-16 bg-gray-100 rounded-lg relative">
+                    <div class="absolute top-0 right-0 h-full w-1/4 bg-blue-500 rounded-r-lg flex items-center justify-center cursor-pointer hover:bg-blue-600 transition-colors" onclick="updateTimeline('timelinePoint1')">
+                        <span class="text-white font-medium">النصف الأول 2024</span>
+                    </div>
+                    <div class="absolute top-0 right-1/4 h-full w-1/4 bg-indigo-500 flex items-center justify-center cursor-pointer hover:bg-indigo-600 transition-colors" onclick="updateTimeline('timelinePoint2')">
+                        <span class="text-white font-medium">النصف الثاني 2024</span>
+                    </div>
+                    <div class="absolute top-0 right-2/4 h-full w-1/4 bg-purple-500 flex items-center justify-center cursor-pointer hover:bg-purple-600 transition-colors" onclick="updateTimeline('timelinePoint3')">
+                        <span class="text-white font-medium">النصف الأول 2025</span>
+                    </div>
+                    <div class="absolute top-0 right-3/4 h-full w-1/4 bg-violet-500 rounded-l-lg flex items-center justify-center cursor-pointer hover:bg-violet-600 transition-colors" onclick="updateTimeline('timelinePoint4')">
+                        <span class="text-white font-medium">النصف الثاني 2025</span>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200" id="timelineContent">
+                <h3 class="font-semibold text-lg text-gray-800">أبرز النقاط في النصف الثاني من 2024</h3>
+                <ul class="mt-2 list-disc list-inside text-gray-700">
+                    <li>زيادة حجم هجمات البريد الإلكتروني بنسبة 202%</li>
+                    <li>زيادة هجمات الهندسة الاجتماعية بنسبة 141%</li>
+                    <li>54.9% من رسائل التصيد تحتوي على روابط تشعبية ضارة</li>
+                    <li>20% من رسائل البريد الإلكتروني المحللة اعتمدت فقط على الهندسة الاجتماعية</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab functionality
+        function showTab(tabId) {
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Add active class to clicked tab
+            document.querySelectorAll('.tab').forEach(tab => {
+                if (tab.textContent.includes('نظرة') && tabId === 'overview' || 
+                    tab.textContent.includes('اتجاهات') && tabId === 'trends' || 
+                    tab.textContent.includes('مقارنة') && tabId === 'comparison') {
+                    tab.classList.add('active');
+                }
+            });
+            
+            // Hide all tab content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            // Show the selected tab content
+            document.getElementById(tabId).classList.remove('hidden');
+            
+            // Reinitialize charts for the tab
+            if (tabId === 'overview') {
+                if (!keyStatsChart) initKeyStatsChart();
+            } else if (tabId === 'trends') {
+                if (!growthChart) initGrowthChart();
+                if (!successRateChart) initSuccessRateChart();
+                if (!mobileEntryChart) initMobileEntryChart();
+            } else if (tabId === 'comparison') {
+                if (!radarChart) initRadarChart();
+                if (!emailPayloadChart) initEmailPayloadChart();
+                if (!becSourcesChart) initBecSourcesChart();
+            }
+        }
+
+        // Timeline functionality
+        const timelineData = {
+            'timelinePoint1': {
+                title: 'أبرز النقاط في النصف الأول من 2024',
+                items: [
+                    'بداية ارتفاع هجمات التصيد المدعومة بالذكاء الاصطناعي',
+                    'بدء زيادة تهديدات التصيد عبر الهاتف المحمول',
+                    'علامات مبكرة لاستراتيجيات الهجوم متعدد القنوات',
+                    'متوسط 300 تهديد للهاتف المحمول لكل مستخدم'
+                ]
+            },
+            'timelinePoint2': {
+                title: 'أبرز النقاط في النصف الثاني من 2024',
+                items: [
+                    'زيادة حجم هجمات البريد الإلكتروني بنسبة 202%',
+                    'زيادة هجمات الهندسة الاجتماعية بنسبة 141%',
+                    '54.9% من رسائل التصيد تحتوي على روابط تشعبية ضارة',
+                    '20% من رسائل البريد الإلكتروني المحللة اعتمدت فقط على الهندسة الاجتماعية'
+                ]
+            },
+            'timelinePoint3': {
+                title: 'أبرز النقاط في النصف الأول من 2025',
+                items: [
+                    '41% من حوادث التصيد الناجحة تضمنت طُعمًا متعدد القنوات',
+                    'الهجمات متعددة القنوات أظهرت معدل نجاح أعلى بنسبة 42%',
+                    'وصلت تهديدات الهاتف المحمول إلى 600 تهديد سنويًا لكل مستخدم',
+                    'زيادة بنسبة 57.9% في الهجمات من الحسابات المخترقة'
+                ]
+            },
+            'timelinePoint4': {
+                title: 'توقعات النصف الثاني من 2025',
+                items: [
+                    'من المتوقع أن تزداد الهجمات المدعومة بالذكاء الاصطناعي بنسبة 150% أخرى',
+                    'من المتوقع أن يصبح التصيد عبر الهاتف المحمول الأسلوب السائد',
+                    'من المتوقع أن تمثل الرسائل النصية وتطبيقات المراسلة أكثر من 60% من نقاط الدخول عبر الهاتف المحمول',
+                    'من المتوقع أن تصل الهجمات متعددة القنوات إلى 50% من جميع الحوادث'
+                ]
+            }
+        };
+        
+        function updateTimeline(pointId) {
+            const data = timelineData[pointId];
+            const timelineContent = document.getElementById('timelineContent');
+            timelineContent.innerHTML = `
+                <h3 class="font-semibold text-lg text-gray-800">${data.title}</h3>
+                <ul class="mt-2 list-disc list-inside text-gray-700">
+                    ${data.items.map(item => `<li>${item}</li>`).join('')}
+                </ul>
+            `;
+        }
+
+        // Chart variables
+        let keyStatsChart, growthChart, successRateChart, mobileEntryChart, radarChart, emailPayloadChart, becSourcesChart;
+
+        // Initialize charts
+        function initKeyStatsChart() {
+            const keyStatsCtx = document.getElementById('keyStatsChart').getContext('2d');
+            keyStatsChart = new Chart(keyStatsCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['التصيد الإلكتروني', 'متعدد القنوات', 'الهندسة الاجتماعية', 'تصيد الهاتف المحمول', 'مدعوم بالذكاء الاصطناعي', 'الحسابات المخترقة'],
+                    datasets: [{
+                        label: 'الإحصائيات الرئيسية (%)',
+                        data: [54.9, 42, 20, 52.2, 74, 57.9],
+                        backgroundColor: [
+                            'rgba(59, 130, 246, 0.7)',
+                            'rgba(124, 58, 237, 0.7)',
+                            'rgba(239, 68, 68, 0.7)',
+                            'rgba(16, 185, 129, 0.7)',
+                            'rgba(234, 179, 8, 0.7)',
+                            'rgba(79, 70, 229, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgb(59, 130, 246)',
+                            'rgb(124, 58, 237)',
+                            'rgb(239, 68, 68)',
+                            'rgb(16, 185, 129)',
+                            'rgb(234, 179, 8)',
+                            'rgb(79, 70, 229)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label}: ${context.raw}%`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: 'النسبة المئوية (%)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function initGrowthChart() {
+            const growthCtx = document.getElementById('growthChart').getContext('2d');
+            growthChart = new Chart(growthCtx, {
+                type: 'line',
+                data: {
+                    labels: ['2022', '2023', 'النصف الأول 2024', 'النصف الثاني 2024', 'النصف الأول 2025'],
+                    datasets: [
+                        {
+                            label: 'التصيد الإلكتروني',
+                            data: [100, 130, 170, 202, 230],
+                            borderColor: 'rgb(59, 130, 246)',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            tension: 0.3,
+                            fill: true
+                        },
+                        {
+                            label: 'الهندسة الاجتماعية',
+                            data: [100, 115, 130, 141, 160],
+                            borderColor: 'rgb(239, 68, 68)',
+                            backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                            tension: 0.3,
+                            fill: true
+                        },
+                        {
+                            label: 'هجمات الذكاء الاصطناعي',
+                            data: [100, 500, 2000, 3000, 4000],
+                            borderColor: 'rgb(234, 179, 8)',
+                            backgroundColor: 'rgba(234, 179, 8, 0.1)',
+                            tension: 0.3,
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'مؤشر النمو (2022 = 100)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function initSuccessRateChart() {
+            const successRateCtx = document.getElementById('successRateChart').getContext('2d');
+            successRateChart = new Chart(successRateCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['البريد الإلكتروني العادي', 'متعدد القنوات', 'معزز بالذكاء الاصطناعي', 'خاص بالهاتف المحمول'],
+                    datasets: [{
+                        label: 'معدل النجاح (%)',
+                        data: [30, 42, 74, 38],
+                        backgroundColor: [
+                            'rgba(59, 130, 246, 0.7)',
+                            'rgba(124, 58, 237, 0.7)',
+                            'rgba(234, 179, 8, 0.7)',
+                            'rgba(16, 185, 129, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgb(59, 130, 246)',
+                            'rgb(124, 58, 237)',
+                            'rgb(234, 179, 8)',
+                            'rgb(16, 185, 129)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `معدل النجاح: ${context.raw}%`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: 'معدل النجاح (%)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function initMobileEntryChart() {
+            const mobileEntryCtx = document.getElementById('mobileEntryChart').getContext('2d');
+            mobileEntryChart = new Chart(mobileEntryCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['الرسائل النصية', 'تطبيقات المراسلة', 'البريد الإلكتروني', 'وسائل التواصل الاجتماعي', 'تطبيقات ضارة', 'أخرى'],
+                    datasets: [{
+                        data: [27.8, 24.4, 18.5, 15.3, 10.2, 3.8],
+                        backgroundColor: [
+                            'rgba(16, 185, 129, 0.7)',
+                            'rgba(59, 130, 246, 0.7)',
+                            'rgba(124, 58, 237, 0.7)',
+                            'rgba(234, 179, 8, 0.7)',
+                            'rgba(239, 68, 68, 0.7)',
+                            'rgba(107, 114, 128, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgb(16, 185, 129)',
+                            'rgb(59, 130, 246)',
+                            'rgb(124, 58, 237)',
+                            'rgb(234, 179, 8)',
+                            'rgb(239, 68, 68)',
+                            'rgb(107, 114, 128)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'left'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.label}: ${context.raw}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function initRadarChart() {
+            const radarCtx = document.getElementById('radarChart').getContext('2d');
+            radarChart = new Chart(radarCtx, {
+                type: 'radar',
+                data: {
+                    labels: [
+                        'معدل النجاح',
+                        'معدل النمو',
+                        'تجاوز الأمان',
+                        'خداع المستخدم',
+                        'التعقيد التقني',
+                        'الانتشار'
+                    ],
+                    datasets: [
+                        {
+                            label: 'التصيد الإلكتروني',
+                            data: [65, 80, 55, 70, 40, 90],
+                            backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                            borderColor: 'rgb(59, 130, 246)',
+                            pointBackgroundColor: 'rgb(59, 130, 246)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgb(59, 130, 246)'
+                        },
+                        {
+                            label: 'متعدد القنوات',
+                            data: [85, 70, 75, 80, 65, 60],
+                            backgroundColor: 'rgba(124, 58, 237, 0.2)',
+                            borderColor: 'rgb(124, 58, 237)',
+                            pointBackgroundColor: 'rgb(124, 58, 237)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgb(124, 58, 237)'
+                        },
+                        {
+                            label: 'مدعوم بالذكاء الاصطناعي',
+                            data: [90, 95, 85, 90, 80, 70],
+                            backgroundColor: 'rgba(234, 179, 8, 0.2)',
+                            borderColor: 'rgb(234, 179, 8)',
+                            pointBackgroundColor: 'rgb(234, 179, 8)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgb(234, 179, 8)'
+                        },
+                        {
+                            label: 'خاص بالهاتف المحمول',
+                            data: [75, 85, 65, 80, 60, 75],
+                            backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                            borderColor: 'rgb(16, 185, 129)',
+                            pointBackgroundColor: 'rgb(16, 185, 129)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgb(16, 185, 129)'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    elements: {
+                        line: {
+                            borderWidth: 2
+                        }
+                    }
+                }
+            });
+        }
+
+        function initEmailPayloadChart() {
+            const emailPayloadCtx = document.getElementById('emailPayloadChart').getContext('2d');
+            emailPayloadChart = new Chart(emailPayloadCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['روابط تشعبية', 'مرفقات', 'هندسة اجتماعية فقط', 'أخرى'],
+                    datasets: [{
+                        data: [54.9, 18.3, 20.0, 6.8],
+                        backgroundColor: [
+                            'rgba(59, 130, 246, 0.7)',
+                            'rgba(239, 68, 68, 0.7)',
+                            'rgba(16, 185, 129, 0.7)',
+                            'rgba(107, 114, 128, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgb(59, 130, 246)',
+                            'rgb(239, 68, 68)',
+                            'rgb(16, 185, 129)',
+                            'rgb(107, 114, 128)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.label}: ${context.raw}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function initBecSourcesChart() {
+            const becSourcesCtx = document.getElementById('becSourcesChart').getContext('2d');
+            becSourcesChart = new Chart(becSourcesCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['حسابات مخترقة', 'نطاقات مزيفة', 'نطاقات متشابهة', 'أخرى'],
+                    datasets: [{
+                        label: 'النسبة المئوية (%)',
+                        data: [57.9, 24.3, 15.5, 2.3],
+                        backgroundColor: [
+                            'rgba(79, 70, 229, 0.7)',
+                            'rgba(124, 58, 237, 0.7)',
+                            'rgba(139, 92, 246, 0.7)',
+                            'rgba(167, 139, 250, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgb(79, 70, 229)',
+                            'rgb(124, 58, 237)',
+                            'rgb(139, 92, 246)',
+                            'rgb(167, 139, 250)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label}: ${context.raw}%`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: 'النسبة المئوية (%)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Initialize charts on page load
+        window.onload = function() {
+            initKeyStatsChart();
+            // Initialize only the visible tab's charts initially
+            // Other charts will be initialized when their tabs are clicked
+        };
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93aeae721153d1dc',t:'MTc0NjQzMTc4OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: medium; visibility: hidden;"></iframe>
+</body></html>
